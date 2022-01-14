@@ -1,0 +1,29 @@
+generator:
+  noise_dim: 64
+  layers: 4
+  out_channels: [256, 128, 64] # last channel is given by image channels
+  stride: [2, 1, 2, 2]
+  kernel_size: [3, 4, 3, 4]
+  activation: ["relu", "relu", "relu", "tanh"]
+  batch_normalization: [true, true, true, false]
+  dropout: [false, false, false, false]
+  drop_prob: 0.2
+discriminator:
+  layers: 3
+  out_channels: [16, 32]
+  stride: [2, 2, 2]
+  kernel_size: [4, 4, 4]
+  activation: ["leakyrelu", "leakyrelu", "leakyrelu"]
+  batch_normalization: [true, true, false]
+  dropout: [false, false, false]
+  drop_prob: 0.2
+trainer:
+  batch_size: 128
+  epochs: 100
+optimizer:
+  lr: 0.0002
+  beta_1: 0.5
+  beta_2: 0.999
+visualizations:
+  visualize: true
+  output_dir: "./figures"
