@@ -84,8 +84,8 @@ def main(args):
         betas=(config["optimizer"]["beta_1"], config["optimizer"]["beta_2"]),
     )
 
-    generator = generator.apply(weights_init)
-    discriminator = discriminator.apply(weights_init)
+    # generator = generator.apply(weights_init)
+    # discriminator = discriminator.apply(weights_init)
 
     cur_step = 0
     for epoch in range(config["trainer"]["epochs"]):

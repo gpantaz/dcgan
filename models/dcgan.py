@@ -43,7 +43,7 @@ class Generator(nn.Module):
         return noise.view(len(noise), self.noise_dim, 1, 1)
 
     def forward(self, noise):
-        """Perform forward pass."""
+        """Performs forward pass."""
         noise_expand = self.unsqueeze_noise(noise)
         return self.gen(noise_expand)
 
@@ -96,12 +96,7 @@ class Discriminator(nn.Module):
         return nn.Sequential(*disc_blocks)
 
     def forward(self, image):
-        """
-        Function for completing a forward pass of the discriminator: Given an image tensor,
-        returns a 1-dimension tensor representing fake/real.
-        Parameters:
-            image: a flattened image tensor with dimension (im_dim)
-        """
+        """Performs forward pass."""
         disc_pred = self.disc(image)
         return disc_pred.view(len(disc_pred), -1)
 
@@ -115,17 +110,6 @@ class Discriminator(nn.Module):
         else:
             raise NotImplementedError(f"Unsupported activ function {activ}")
         return activation
-
-
-def get_noise(n_samples, z_dim, device="cpu"):
-    """Sample noise vectors.
-
-    Args:
-        n_samples: the number of samples to generate, a scalar
-        z_dim: the dimension of the noise vector, a scalar
-        device: the device type
-    """
-    return torch.randn(n_samples, z_dim, device=device)
 
 
 def weights_init(m):
