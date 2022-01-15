@@ -84,9 +84,6 @@ def main(args):
         betas=(config["optimizer"]["beta_1"], config["optimizer"]["beta_2"]),
     )
 
-    # generator = generator.apply(weights_init)
-    # discriminator = discriminator.apply(weights_init)
-
     cur_step = 0
     for epoch in range(config["trainer"]["epochs"]):
         avg_gen_loss = 0
@@ -121,7 +118,7 @@ def main(args):
             avg_gen_loss += gen_loss.item()
             avg_disc_loss += disc_loss.item()
             msg = "Epoch: {} Running loss: Gen {}, Disc {}".format(
-                epoch,
+                epoch + 1,
                 round(avg_gen_loss / avg_step, 3),
                 round(avg_disc_loss / avg_step, 3),
             )
